@@ -1,5 +1,5 @@
-import create from "zustand/react";
 import { uuid } from "react-uuid";
+import create from "zustand";
 
 const useTodoStore = create((set) => ({
   todos: [],
