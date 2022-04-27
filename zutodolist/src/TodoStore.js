@@ -1,7 +1,7 @@
 import create from "zustand/react";
 import { uuid } from "react-uuid";
 
-const TodoStore = create((set) => ({
+const useTodoStore = create((set) => ({
   todos: [],
   addTodo: (todoText) => set((state) => ({
       todos: [
@@ -32,4 +32,4 @@ const TodoStore = create((set) => ({
   }))
 }))
 
-export default TodoStore;
+export default useTodoStore;
