@@ -19,7 +19,7 @@ function TodoList() {
               <input 
                 type="text"
                 id="newTodo"
-                value="new-todo"
+                // value="new-todo"
                 onChange={(e) => setTodoValue(e.target.value)}
                 name="doSomthing"
               />
