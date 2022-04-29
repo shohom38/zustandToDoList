@@ -30,9 +30,19 @@ function TodoList() {
             {todos.map((todo) => {
               return (
                 <li key={todo.id}>
-                  <span>
+                  <span style={{
+                    textDecoration: todo.doneTodo ? "line-through" : "unset"
+                  }}>
                     {todo.text}{" "}
                   </span>
+                  <div style={
+                      {
+                        display: todo.modified ? "block" : "none"
+                      }
+                    }>
+                    <input type="text" />
+                    <button>✍️</button>
+                  </div>
                   <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                   <button onClick={() => modifiedTodo(todo.id)}>Modified</button>
                 </li>
