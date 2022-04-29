@@ -1,5 +1,5 @@
-import { uuid } from "react-uuid";
 import create from "zustand";
+import { v4 as uuidv4 } from "uuid";
 
 const useTodoStore = create((set) => ({
   todos: [],
@@ -8,28 +8,42 @@ const useTodoStore = create((set) => ({
       ...state.todos,
       {
         text: todoText,
-        id: uuid(`${todoText} - ${state.todos.length}`),
-        isDone: false
+        id: uuidv4(`${todoText} - ${state.todos.length}`),
+        isDone: false,
       }
     ]
   })),
   deleteTodo: (todoId) => 
-  set((state) => ({
-    todos: state.todos.filter((todo) => todo.id !== todoId)
+    set((state) => ({
+      todos: state.todos.filter((todo) => todo.id !== todoId)
+    })),
+    
+    modifiedTodo: (todoId) =>
+    set((state) => ({
+      todos: state.todos.map((todo) => {
+        if(todo.id === todoId) {
+          return {
+            ...todo,
+            isDone: true
+          };
+        }
+
+        return todo;
+      })
   })),
   doneTodo: (todoId) =>
-  set((state) => ({
-    todos: state.todos.map((todo) => {
-      if(todo.id === todoId) {
-        return {
-          ...todo,
-          isDone: true
-        };
-      }
+    set((state) => ({
+      todos: state.todos.map((todo) => {
+        if(todo.id === todoId) {
+          return {
+            ...todo,
+            isDone: true
+          };
+        }
 
-      return todo;
-    })
-  }))
+        return todo;
+      })
+  })),
 }))
 
 export default useTodoStore;
