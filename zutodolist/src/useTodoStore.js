@@ -10,6 +10,7 @@ const useTodoStore = create((set) => ({
         text: todoText,
         id: uuidv4(`${todoText} - ${state.todos.length}`),
         isDone: false,
+        modified: false,
       }
     ]
   })),
@@ -18,18 +19,17 @@ const useTodoStore = create((set) => ({
       todos: state.todos.filter((todo) => todo.id !== todoId)
     })),
     
-    modifiedTodo: (todoId) =>
-    set((state) => ({
-      todos: state.todos.map((todo) => {
-        if(todo.id === todoId) {
-          return {
-            ...todo,
-            isDone: true
-          };
-        }
+  modifiedTodo: (todoId) =>
+  set((state) => ({
+    todos: state.todos.map((todo) => {
+      if(todo.id === todoId) {
+        return {
+          modified: true
+        };
+      }
 
-        return todo;
-      })
+      return todo;
+    })
   })),
   doneTodo: (todoId) =>
     set((state) => ({
