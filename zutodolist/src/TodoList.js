@@ -4,7 +4,7 @@ import useTodoStore from "./useTodoStore";
 
 function TodoList() {
   const [todoValue, setTodoValue] = useState("");
-  const { todos, addTodo, deleteTodo, modifiedTodo } = useTodoStore(
+  const { todos, addTodo, deleteTodo, modifiedTodo, doneTodo } = useTodoStore(
     (state) => state
   );
   const handleSubmit = (e) => {
@@ -31,9 +31,9 @@ function TodoList() {
               return (
                 <li key={todo.id}>
                   <span style={{
-                    textDecoration: todo.doneTodo ? "line-through" : "unset"
+                    color: todo.doneTodo ? "#eee" : "#000"
                   }}>
-                    {todo.text}{" "}
+                    {todo.text}
                   </span>
                   <div style={
                       {
@@ -44,6 +44,7 @@ function TodoList() {
                     <button>✍️</button>
                   </div>
                   <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+                  <button onClick={() => doneTodo(todo.id)}>Done!</button>
                   <button onClick={() => modifiedTodo(todo.id)}>Modified</button>
                 </li>
               )
