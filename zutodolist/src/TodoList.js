@@ -31,7 +31,7 @@ function TodoList() {
               return (
                 <li key={todo.id}>
                   <span style={{
-                    color: todo.doneTodo ? "#eee" : "#000"
+                    color: todo.isDone ? "#eee" : "#000"
                   }}>
                     {todo.text}
                   </span>
